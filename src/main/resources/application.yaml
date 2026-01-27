@@ -1,0 +1,19 @@
+server:
+  port: 7072
+
+
+spring:
+  application:
+    name: DataCollectionService
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jrtp_ish_db
+    username: root
+    password: Sandeep@123
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
