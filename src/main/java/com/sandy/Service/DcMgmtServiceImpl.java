@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class DcMgmtServiceImpl implements IDcMgmtService{
 
-    @Autowired
+    @Autowired//feid
     private IDcCaseRepository caseRepo;
     @Autowired
     private IApplicationRegistrationRepository citizenAppRepo;
@@ -38,7 +38,7 @@ public class DcMgmtServiceImpl implements IDcMgmtService{
         if(appCitizen.isPresent()) {
             DcCaseEntity caseEntity=new DcCaseEntity();
             caseEntity.setAppId(appId);
-            return caseRepo.save(caseEntity).getCaseNO();
+            return caseRepo.save(caseEntity).getCaseNo();
         }
         return 0;
     }
@@ -61,7 +61,7 @@ public class DcMgmtServiceImpl implements IDcMgmtService{
             caseEntity.setPlanId(plan.getPlanId());
             //update the DcCaseEntity with plain id
             caseRepo.save(caseEntity);//update obj operation
-            return caseEntity.getCaseNO();
+            return caseEntity.getCaseNo();
         }
         return 0;
     }
@@ -70,7 +70,10 @@ public class DcMgmtServiceImpl implements IDcMgmtService{
     public Integer saveIncomeDetails(IncomeInputs income) {
         //Convert binding obj data to Entity class obj data
         DcIncomeEntity  incomeEntity = new DcIncomeEntity();
-        BeanUtils.copyProperties(income,incomeEntity);
+        //BeanUtils.copyProperties(income,incomeEntity);
+        /*imp note
+        // set all the properties which DTO(or) bindingClass to Entity */
+        incomeEntity.setCaseNo(income.getCaseNo());
 
         //save the income details
         incomeRepo.save(incomeEntity);

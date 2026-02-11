@@ -33,7 +33,7 @@ public class DataCollectionOperationController {
 
     }
 
-    @PutMapping("/updatePlanSelection/")
+    @PostMapping ("/updatePlanSelection/")
     public ResponseEntity<Integer> savePlanSelection(@RequestBody PlanSelectionInputs inputs) {
         //use service
         Integer caseNo = dcService.savePlanSelection(inputs);
@@ -59,10 +59,11 @@ public class DataCollectionOperationController {
         Integer caseNo = dcService.saveChildrenDetails(childs);
         return new ResponseEntity<Integer>(caseNo,HttpStatus.CREATED);
     }
-    @GetMapping("/summary/{caseNO}")
-    public ResponseEntity<DcSummaryReport> showSummaryReport(@PathVariable Integer caseNO){
-        DcSummaryReport report = dcService.showDCSummary(caseNO);
+    @GetMapping("/summary/{caseNo}")
+    public ResponseEntity<DcSummaryReport> showSummaryReport(@PathVariable Integer caseNo){
+        DcSummaryReport report = dcService.showDCSummary(caseNo);
         return new ResponseEntity<>(report, HttpStatus.OK);
     }
+
 
 }
