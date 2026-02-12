@@ -31,18 +31,25 @@ public class DcMgmtServiceImpl implements IDcMgmtService{
 
 
 //here we generate the case number while saving the case entity object
-    @Override
-    public Integer generateCaseNo(Integer appId) {
-        //Load Citizen Data
-        Optional<CitizenAppRegistrationEntity>  appCitizen=citizenAppRepo.findById(appId);
-        if(appCitizen.isPresent()) {
-            DcCaseEntity caseEntity=new DcCaseEntity();
-            caseEntity.setAppId(appId);
-            return caseRepo.save(caseEntity).getCaseNo();
-        }
-        return 0;
+@Override
+public Integer generateCaseNo(Integer appId) {
+
+    Optional<CitizenAppRegistrationEntity> appCitizen =
+            citizenAppRepo.findById(appId);
+
+    if(appCitizen.isPresent()) {
+        DcCaseEntity caseEntity = new DcCaseEntity();
+        caseEntity.setAppId(appId);
+
+        DcCaseEntity saved = caseRepo.save(caseEntity);
+
+        return saved.getCaseNo();   // ✔ Now it works
     }
-// to show all the plans from the plan Entity
+
+    return null;
+}
+
+    // to show all the plans from the plan Entity
     @Override
     public List<String> showAllPlanNames() {
         List<PlanEntity> planList = planRepo.findAll();
@@ -70,10 +77,10 @@ public class DcMgmtServiceImpl implements IDcMgmtService{
     public Integer saveIncomeDetails(IncomeInputs income) {
         //Convert binding obj data to Entity class obj data
         DcIncomeEntity  incomeEntity = new DcIncomeEntity();
-        //BeanUtils.copyProperties(income,incomeEntity);
+        BeanUtils.copyProperties(income,incomeEntity);
         /*imp note
         // set all the properties which DTO(or) bindingClass to Entity */
-        incomeEntity.setCaseNo(income.getCaseNo());
+       // incomeEntity.setCaseNo(income.getCaseNo());
 
         //save the income details
         incomeRepo.save(incomeEntity);

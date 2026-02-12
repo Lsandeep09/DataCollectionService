@@ -11,8 +11,6 @@ public class DcCaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer caseNo;
-    private Integer caseId;
-
     private Integer appId;
     private Integer planId;
 

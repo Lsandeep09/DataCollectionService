@@ -2,7 +2,7 @@ package com.sandy.MS;
 
 import com.sandy.DTO.*;
 import com.sandy.Service.IDcMgmtService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+//import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dc-api")
-@Tag(name = "dc-api", description = "Data Collection module microService")
+//@Tag(name = "dc-api", description = "Data Collection module microService")
 public class DataCollectionOperationController {
 
     @Autowired
