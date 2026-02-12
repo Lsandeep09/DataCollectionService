@@ -7,7 +7,7 @@ import lombok.Data;
 @Table(name="jr_ish_DC_INCOME")
 @Data
 public class DcIncomeEntity {
-
+//
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer incomeId;
